@@ -33,6 +33,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${prefix} \
     -DUA_ENABLE_HISTORIZING=ON \
     -DBUILD_SHARED_LIBS=ON \
     -DUA_FORCE_WERROR=OFF \
+    -D__BSD_VISIBLE=1 \
     ..
 make -j${nproc}
 make install
@@ -41,7 +42,8 @@ install_license ../LICENSE
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = supported_platforms(; experimental=true)
+#platforms = supported_platforms(; experimental=true)
+platforms = [Platform("x86_64", "FreeBSD")]
 
 # The products that we will ensure are always built
 products = [
